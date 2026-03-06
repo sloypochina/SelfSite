@@ -86,7 +86,7 @@
         }
     </style>
 </head>
-<body onclick="playVideo()">
+<body>
 
     <video autoplay muted loop playsinline class="video-bg" id="bg-video">
         <source src="img/bg.mp4" type="video/mp4">
@@ -154,7 +154,7 @@
     <script>
         $(".win").draggable({ handle: ".win-header", drag: function(e) { createTrail(e); } });
         
-        function playVideo() { document.getElementById('bg-video').play(); }
+        window.onload = () => { document.getElementById('bg-video').play(); };
         
         function openPlayer() { $('#alert-win').hide(); $('#player-win').show(); }
         
