@@ -3,17 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 
     <style>
-        /* Шрифты */
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&family=Playfair+Display:ital,wght@1,900&display=swap');
 
-        /* Основные стили страницы */
         body { 
             background: #050505; 
             color: white; 
@@ -24,13 +21,22 @@
             min-height: 100vh;
         }
 
-        /* Видео-фон */
+        /* Видео-фон с плавным появлением */
         .video-bg {
             position: fixed; inset: 0; z-index: -3;
             width: 100vw; height: 100vh;
             object-fit: cover;
             filter: blur(15px) brightness(0.6);
-            transition: filter 1s ease;
+            transition: filter 1s ease, opacity 2s ease-in;
+            opacity: 0; 
+        }
+        .video-ready { opacity: 1; }
+
+        /* Лоадер текста */
+        #loader {
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            color: #3b82f6; font-size: 20px; z-index: 100;
+            transition: opacity 1s;
         }
 
         /* Градиентная виньетка: Синий -> Белый -> Оранжевый */
@@ -86,11 +92,12 @@
 
         @media (max-width: 768px) {
             .btn-desktop { position: static !important; margin: 20px auto; display: block !important; width: 80%; }
-            .killer-header { font-size: 2.5rem !important; }
         }
     </style>
 </head>
 <body>
+
+    <div id="loader">LOADING SYSTEM...</div>
 
     <video autoplay muted loop playsinline class="video-bg" id="bg-video">
         <source src="img/bg.mp4" type="video/mp4">
@@ -99,7 +106,7 @@
     <div id="stars" class="fixed inset-0 z-[-1] opacity-50"></div>
 
     <header class="p-10 pl-20 cursor-default">
-        <h1 class="killer-header text-6xl uppercase tracking-tighter font-black whitespace-nowrap">
+        <h1 class="killer-header text-6xl uppercase tracking-tighter font-black">
             <span class="text-blue-500" style="animation-delay: 0.1s;">D</span><span class="text-white" style="animation-delay: 0.2s;">E</span><span class="text-blue-500" style="animation-delay: 0.3s;">R</span><span class="text-white" style="animation-delay: 0.4s;">V</span><span class="text-orange-500" style="animation-delay: 0.5s;">I</span><span class="text-blue-400" style="animation-delay: 0.6s;">S</span><span class="text-white" style="animation-delay: 0.7s;">S</span><span class="text-orange-500" style="animation-delay: 0.8s;">HH</span>
             <br>
             <span class="text-orange-400 font-mono">\\</span> 
@@ -133,7 +140,7 @@
             <button onclick="play('audio/27bitZacepin.m4a')" class="w-full border p-1 text-xs hover:bg-blue-900">4. Chill Space Zacepin </button>
             <button onclick="play('audio/26bitEa.m4a')" class="w-full border p-1 text-xs hover:bg-blue-900">5. Fast Funny Funk </button>
             <button onclick="play('audio/23bitlithekanye.m4a')" class="w-full border p-1 text-xs hover:bg-blue-900">6. Pablo Kanye style </button>
-            <button onclick="play('audio/tonoisetosilence.m4a')" class="w-full border p-1 text-xs hover:bg-blue-900">7. Carti pop out type </button>
+            <button onclick="play('tonoisetosilence.m4a')" class="w-full border p-1 text-xs hover:bg-blue-900">7. Carti pop out type </button>
         </div>
     </div>
 
@@ -143,11 +150,11 @@
         <div class="grid grid-cols-2 gap-6 max-w-4xl mx-auto">
              <div class="glass-btn p-3 border border-blue-500/30">
                  <img src="img/photo1.webp" alt="Vibe" class="w-full h-auto border border-white/10">
-                 <p class="text-[10px] md:text-xs text-blue-400 mt-3 font-mono tracking-widest break-words">[ 01 ] Art_by_Jim_carrey.WEBP</p>
+                 <p class="text-xs text-blue-400 mt-3 font-mono tracking-widest">[ 01 ] Art_by_Jim_carrey.WEBP</p>
              </div>
              <div class="glass-btn p-3 border border-orange-500/30">
                  <img src="img/photo2.webp" alt="Vibe" class="w-full h-auto border border-white/10">
-                 <p class="text-[10px] md:text-xs text-orange-500 mt-3 font-mono tracking-widest break-words">[ 02 ] Mostr_de_Parish_Art.WEBP</p>
+                 <p class="text-xs text-orange-500 mt-3 font-mono tracking-widest">[ 02 ] Mostr_de_Parish_Art.WEBP</p>
              </div>
         </div>
         <footer class="mt-20 text-gray-500 text-xs">
@@ -158,7 +165,11 @@
     <script>
         $(".win").draggable({ handle: ".win-header", drag: function(e) { createTrail(e); } });
         
-        window.onload = () => { document.getElementById('bg-video').play(); };
+        const video = document.getElementById('bg-video');
+        video.oncanplaythrough = () => {
+            video.classList.add('video-ready');
+            $('#loader').fadeOut();
+        };
         
         function openPlayer() { $('#alert-win').hide(); $('#player-win').show(); }
         
