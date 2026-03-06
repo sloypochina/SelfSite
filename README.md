@@ -26,21 +26,21 @@ Site - Business card, it just show what i am can in html + javaScript + CSS + de
 
 Используются шрифты <font color="#3b82f6">**Space Grotesk**</font> и <font color="#ff4500">**Playfair Display**</font> 
 
-## 📂 Структурка 🔸🔵🔵
+## 📂 Структурка ☣️🔵🌐
 * `/audio` — чуть-чуть моих битов | .m4a |
 * `/img` — ассеты (курсоры, фон Daniel Raid | .webp | ).
 * `index.html` — основной файл с разметкой, стилями и JS-логикой.
 
-* ## ⚙️ Установка и запуск 🔸🔸🔵
+* ## ⚙️ Установка и запуск 🔸☄️💎
 Проект не требует сложной сборки.
 1. Клонируйте репозиторий.
 2. Откройте `index.html` в любом современном браузере.
 3. Для хостинга рекомендуется использовать **Vercel** (подключение через GitHub дает автоматический деплой при каждом `push`).
 
-## 🎨 Дизайн-код 🔸🔸🔸🔸🔵🔵🔵
+## 🎨 Дизайн-код 🍊🔸🔥🔸🔵💠🧊 
 * **Палитра:** Blue (#3b82f6) / Orange (#ff4500) / Black (#050505).
 * **Шрифты:** Space Grotesk, Playfair Display.
 ---
-*Created by Dervisshh // Sloypochina* 🔵🔸
+*Created by Dervisshh // Sloypochina* 🔵☢️ 
 ---
-https://t.me/Dervisshh :)🔸🔵
+https://t.me/Dervisshh :)🔸💠
