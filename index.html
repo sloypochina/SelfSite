@@ -10,10 +10,13 @@
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&family=Playfair+Display:ital,wght@1,900&display=swap');
 
         body { 
-            background: #050505; color: white; overflow: hidden; 
+            background: #050505; 
+            color: white; 
+            overflow: hidden; 
             font-family: 'Space Grotesk', monospace; 
             cursor: url('img/my-cursor.png'), auto; 
-            margin: 0; min-height: 100vh;
+            margin: 0; 
+            min-height: 100vh;
         }
 
         /* Видео-фон */
@@ -25,26 +28,7 @@
             transition: filter 1s ease;
         }
 
-        /* Заголовок с двойной анимацией */
-        .killer-header span {
-            display: inline-block;
-            animation: jump 4s infinite;
-            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .killer-header span:hover {
-            transform: translateY(-20px) scale(1.5);
-            color: #ff4500 !important;
-            text-shadow: 0 0 10px #3b82f6;
-        }
-        @keyframes jump {
-            0%, 100% { transform: translateY(0); }
-            5% { transform: translateY(-15px); }
-            10% { transform: translateY(0); }
-        }
-
-        .text-blue { color: #3b82f6; }
-        .text-orange { color: #ff4500; }
-
+        /* Градиентная виньетка */
         body::after {
             content: ""; position: fixed; inset: 0;
             background: linear-gradient(45deg, rgba(59, 130, 246, 0.2) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 69, 0, 0.2) 100%);
@@ -52,7 +36,24 @@
             pointer-events: none; z-index: -1;
         }
 
-        .glass-btn { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.2); }
+        /* Эффект домино (змейка) для заголовка */
+        .killer-header span {
+            display: inline-block;
+            animation: snake-jump 4s infinite;
+        }
+        @keyframes snake-jump {
+            0%, 100% { transform: translateY(0); }
+            5% { transform: translateY(-20px); }
+            10% { transform: translateY(0); }
+        }
+
+        .glass-btn {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.2s;
+        }
+        
         .glitch-btn:hover { animation: glitch-hover 0.2s infinite; box-shadow: 0 0 15px #3b82f6, 0 0 15px #ff4500; }
         @keyframes glitch-hover { 0%, 100% { transform: translate(0); } 33% { transform: translate(-3px, 2px); } 66% { transform: translate(3px, -2px); } }
 
@@ -64,20 +65,20 @@
         @media (max-width: 768px) { .btn-desktop { position: static !important; margin: 20px auto; display: block !important; width: 80%; } }
     </style>
 </head>
-<body onclick="playVideo()"> <!-- Клик в любое место запустит видео -->
+<body>
 
     <video autoplay muted loop playsinline class="video-bg" id="bg-video">
-        <source src="bg.mp4" type="video/mp4">
+        <source src="img/bg.mp4" type="video/mp4">
     </video>
     
     <div id="stars" class="fixed inset-0 z-[-1] opacity-50"></div>
 
     <header class="p-10 pl-20 cursor-default">
         <h1 class="killer-header text-6xl uppercase tracking-tighter font-black">
-            <span class="text-blue" style="animation-delay: 0.1s;">D</span><span class="text-orange" style="animation-delay: 0.2s;">E</span><span class="text-blue" style="animation-delay: 0.3s;">R</span><span class="text-white" style="animation-delay: 0.4s;">V</span><span class="text-orange" style="animation-delay: 0.5s;">I</span><span class="text-blue" style="animation-delay: 0.6s;">S</span><span class="text-white" style="animation-delay: 0.7s;">S</span><span class="text-orange" style="animation-delay: 0.8s;">HH</span>
+            <span class="text-blue-500" style="animation-delay: 0.1s;">D</span><span class="text-white" style="animation-delay: 0.2s;">E</span><span class="text-blue-500" style="animation-delay: 0.3s;">R</span><span class="text-white" style="animation-delay: 0.4s;">V</span><span class="text-orange-500" style="animation-delay: 0.5s;">I</span><span class="text-blue-400" style="animation-delay: 0.6s;">S</span><span class="text-white" style="animation-delay: 0.7s;">S</span><span class="text-orange-500" style="animation-delay: 0.8s;">HH</span>
             <br>
             <span class="text-orange-400 font-mono">\\</span> 
-            <span class="text-blue" style="animation-delay: 0.9s;">S</span><span class="text-white" style="animation-delay: 1.0s;">L</span><span class="text-orange" style="animation-delay: 1.1s;">O</span><span class="text-blue" style="animation-delay: 1.2s;">Y</span><span class="text-white" style="animation-delay: 1.3s;">PO</span><span class="text-orange" style="animation-delay: 1.4s;">CHI</span><span class="text-blue" style="animation-delay: 1.5s;">NA</span>
+            <span class="text-blue-300" style="animation-delay: 0.9s;">S</span><span class="text-white" style="animation-delay: 1.0s;">L</span><span class="text-blue-600" style="animation-delay: 1.1s;">O</span><span class="text-white" style="animation-delay: 1.2s;">Y</span><span class="text-blue-300" style="animation-delay: 1.3s;">PO</span><span class="text-orange-500" style="animation-delay: 1.4s;">CHI</span><span class="text-blue-600" style="animation-delay: 1.5s;">NA</span>
         </h1>
     </header>
 
@@ -110,10 +111,9 @@
 
     <script>
         $(".win").draggable({ handle: ".win-header", drag: function(e) { createTrail(e); } });
-        
-        function playVideo() { document.getElementById('bg-video').play(); }
+        window.onload = () => { document.getElementById('bg-video').play(); };
         function openPlayer() { $('#alert-win').hide(); $('#player-win').show(); }
-        function play(src) { const a = document.getElementById('audio'); a.src = src; a.play(); $('#bg-video').css('filter', 'blur(5px) grayscale(100%) brightness(1.2)'); }
+        function play(src) { const a = document.getElementById('audio'); a.src = src; a.play(); }
         
         function createTrail(e) {
             const el = document.createElement('div');
