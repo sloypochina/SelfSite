@@ -6,6 +6,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&family=Playfair+Display:ital,wght@1,900&display=swap');
 
@@ -60,6 +61,8 @@
             animation: snake-jump 4s infinite;
             transition: 0.2s ease-out;
         }
+
+        /* Фикс: при наведении отключаем анимацию змейки, чтобы увеличение работало стабильно */
         .killer-header span:hover {
             animation: none !important;
             transform: scale(1.6) translateY(-10px);
@@ -99,20 +102,22 @@
         </h1>
     </header>
 
+    <!-- Хаотичные кнопки -->
     <button onclick="createTrail(event); $('#alert-win').show()" class="btn-desktop absolute top-[30%] left-[25%] p-4 border-2 border-white hover:bg-orange-500 transition glass-btn glitch-btn">📂 BITS.EXE</button>
     <a href="https://t.me/Dervisshh" target="_blank" onclick="createTrail(event)" class="btn-desktop absolute top-[60%] left-[70%] p-4 border-2 border-white hover:bg-blue-500 transition glass-btn glitch-btn">📂 TG_ACC.EXE</a>
     <a href="https://github.com/sloypochina" target="_blank" onclick="createTrail(event)" class="btn-desktop absolute top-[20%] left-[80%] p-4 border-2 border-white hover:bg-green-500 transition glass-btn glitch-btn">📂 GITHUB.EXE</a>
     <a href="http://nexus.lord-mikrotik.online/" target="_blank" onclick="createTrail(event)" class="btn-desktop absolute top-[50%] left-[40%] p-4 border-2 border-white hover:bg-purple-500 transition glass-btn glitch-btn">📂 SITE_TOVARISHA.EXE</a>
 
+    <!-- Предупреждение -->
     <div id="alert-win" class="win hidden w-64 p-4 top-40 left-40">
         <p class="mb-4 text-sm">У меня хобби кароче, биты писать иногда, на те прикольнись, послушай)</p>
         <button onclick="openPlayer()" class="bg-blue-600 px-4 py-2 text-white border border-white">ОК, СЛУХАНУ КА</button>
     </div>
 
+    <!-- Плеер -->
     <div id="player-win" class="win hidden w-80">
         <div class="win-header">
             <span>MUSIC_PLAYER.EXE</span>
-            <!-- Кнопка закрытия сбросит фильтр видео -->
             <button onclick="$('#player-win').hide(); resetVideo()">X</button>
         </div>
         <div class="p-4 space-y-2">
@@ -129,6 +134,7 @@
 
     <script>
         $(".win").draggable({ handle: ".win-header", drag: function(e) { createTrail(e); } });
+        
         window.onload = () => { document.getElementById('bg-video').play(); };
         
         function openPlayer() { $('#alert-win').hide(); $('#player-win').show(); }
@@ -139,17 +145,18 @@
             $('#bg-video').css('filter', 'blur(5px) grayscale(100%) brightness(1.2)');
         }
 
-        // Функция сброса видео
         function resetVideo() {
             $('#bg-video').css('filter', 'blur(15px) brightness(0.6)');
-            document.getElementById('audio').pause();
+            const a = document.getElementById('audio');
+            a.pause();
         }
         
         function createTrail(e) {
             const el = document.createElement('div');
             el.className = 'trail-star';
             el.innerHTML = '✦';
-            el.style.left = e.pageX + 'px'; el.style.top = e.pageY + 'px';
+            el.style.left = e.pageX + 'px'; 
+            el.style.top = e.pageY + 'px';
             document.body.appendChild(el);
             $(el).animate({ opacity: 0, top: '+=100px', fontSize: '30px' }, 1000, () => el.remove());
         }
@@ -158,8 +165,10 @@
         for(let i=0; i<60; i++) {
             const s = document.createElement('div');
             s.className = 'absolute text-red-500 font-bold';
-            s.style.left = Math.random()*100 + '%'; s.style.top = Math.random()*100 + '%';
-            s.innerHTML = '✦'; stars.appendChild(s);
+            s.style.left = Math.random()*100 + '%'; 
+            s.style.top = Math.random()*100 + '%';
+            s.innerHTML = '✦'; 
+            stars.appendChild(s);
         }
     </script>
 </body>
