@@ -6,6 +6,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&family=Playfair+Display:ital,wght@1,900&display=swap');
@@ -13,7 +14,7 @@
         body { 
             background: #050505; 
             color: white; 
-            overflow: hidden; 
+            overflow-x: hidden; 
             font-family: 'Space Grotesk', monospace; 
             cursor: url('img/my-cursor.png'), auto; 
             margin: 0; 
@@ -85,10 +86,10 @@
         }
     </style>
 </head>
-<body>
+<body onclick="playVideo()">
 
     <video autoplay muted loop playsinline class="video-bg" id="bg-video">
-        <source src="bg.mp4" type="video/mp4">
+        <source src="img/bg.mp4" type="video/mp4">
     </video>
     
     <div id="stars" class="fixed inset-0 z-[-1] opacity-50"></div>
@@ -128,14 +129,32 @@
             <button onclick="play('audio/27bitZacepin.m4a')" class="w-full border p-1 text-xs hover:bg-blue-900">4. Chill Space Zacepin </button>
             <button onclick="play('audio/26bitEa.m4a')" class="w-full border p-1 text-xs hover:bg-blue-900">5. Fast Funny Funk </button>
             <button onclick="play('audio/23bitlithekanye.m4a')" class="w-full border p-1 text-xs hover:bg-blue-900">6. Pablo Kanye style </button>
-            <button onclick="play('audio/tonoisetosilence.m4a')" class="w-full border p-1 text-xs hover:bg-blue-900">7. Carti pop out type </button>
+            <button onclick="play('tonoisetosilence.m4a')" class="w-full border p-1 text-xs hover:bg-blue-900">7. Carti pop out type </button>
         </div>
+    </div>
+
+    <!-- Секция для фото и подвала -->
+    <div class="mt-[100vh] p-10 bg-black/50 text-center">
+        <h2 class="text-3xl mb-10 glitch">GALLERY</h2>
+        <div class="grid grid-cols-2 gap-6 max-w-4xl mx-auto">
+             <div class="glass-btn p-3 border border-blue-500/30">
+                 <img src="img/photo1.webp" alt="Vibe" class="w-full h-auto border border-white/10">
+                 <p class="text-xs text-blue-400 mt-3 font-mono tracking-widest">[ 01 ] DERV_MOOD.WEBP</p>
+             </div>
+             <div class="glass-btn p-3 border border-orange-500/30">
+                 <img src="img/photo2.webp" alt="Vibe" class="w-full h-auto border border-white/10">
+                 <p class="text-xs text-orange-500 mt-3 font-mono tracking-widest">[ 02 ] SLOY_STYLE.WEBP</p>
+             </div>
+        </div>
+        <footer class="mt-20 text-gray-500 text-xs">
+            © 2026 Dervisshh // Sloypochina. All rights reserved.
+        </footer>
     </div>
 
     <script>
         $(".win").draggable({ handle: ".win-header", drag: function(e) { createTrail(e); } });
         
-        window.onload = () => { document.getElementById('bg-video').play(); };
+        function playVideo() { document.getElementById('bg-video').play(); }
         
         function openPlayer() { $('#alert-win').hide(); $('#player-win').show(); }
         
@@ -155,8 +174,7 @@
             const el = document.createElement('div');
             el.className = 'trail-star';
             el.innerHTML = '✦';
-            el.style.left = e.pageX + 'px'; 
-            el.style.top = e.pageY + 'px';
+            el.style.left = e.pageX + 'px'; el.style.top = e.pageY + 'px';
             document.body.appendChild(el);
             $(el).animate({ opacity: 0, top: '+=100px', fontSize: '30px' }, 1000, () => el.remove());
         }
@@ -165,10 +183,8 @@
         for(let i=0; i<60; i++) {
             const s = document.createElement('div');
             s.className = 'absolute text-red-500 font-bold';
-            s.style.left = Math.random()*100 + '%'; 
-            s.style.top = Math.random()*100 + '%';
-            s.innerHTML = '✦'; 
-            stars.appendChild(s);
+            s.style.left = Math.random()*100 + '%'; s.style.top = Math.random()*100 + '%';
+            s.innerHTML = '✦'; stars.appendChild(s);
         }
     </script>
 </body>
