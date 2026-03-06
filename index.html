@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&family=Playfair+Display:ital,wght@1,900&display=swap');
+
+        body { 
+            background: #050505; 
+            color: white; 
+            overflow: hidden; 
+            font-family: 'Space Grotesk', monospace; 
+            cursor: url('img/cursor.png'), auto; 
+            margin: 0; 
+            min-height: 100vh;
+        }
+
+        /* Слой с Дэниелом Рейдом на фоне */
+        .bg-art {
+            position: fixed; inset: 0; z-index: -2;
+            background-image: url('img/daniel.webp');
+            background-size: cover; 
+            background-position: center;
+            filter: blur(20px) brightness(0.8);
+        }
+
+        /* Белая виньетка (контур) */
+        body::after {
+            content: ""; position: fixed; inset: 0;
+            box-shadow: inset 0 0 200px 50px rgba(255, 255, 255, 0.05);
+            pointer-events: none; z-index: -1;
+        }
+
+        .win { position: absolute; background: rgba(0,0,0,0.9); border: 2px solid #3b82f6; box-shadow: 6px 6px 0 #ff4500; z-index: 10; }
+        .win-header { background: #3b82f6; color: white; padding: 5px 10px; cursor: move; font-size: 12px; display: flex; justify-content: space-between; }
+        
+        .glitch { animation: glitch 2s infinite; }
+        @keyframes glitch { 0%, 100% { opacity: 1; } 50% { opacity: 0.8; transform: skew(-5deg); } }
+
+        /* Мобильный адаптив */
+        @media (max-width: 768px) {
+            .btn-desktop { position: static !important; margin: 20px auto; display: block !important; width: 80%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-art"></div>
+    <div id="stars" class="fixed inset-0 z-[-1] opacity-50"></div>
+
+    <header class="p-10 pl-20 cursor-default glitch">
+        <h1 class="text-6xl uppercase tracking-tighter">
+            <span class="font-bold text-blue-400 italic">Derv</span><span class="font-black text-white">iss</span><span class="font-light text-orange-500">hh</span>
+            <br>
+            <span class="text-4xl text-orange-400 font-mono">\\</span> 
+            <span class="font-thin text-blue-300">sloy</span><span class="font-black text-white">po</span><span class="font-bold text-blue-600">china</span>
+        </h1>
+    </header>
+
+    <!-- Хаотичные кнопки -->
+    <button onclick="$('#alert-win').show()" class="btn-desktop absolute top-[30%] left-[25%] p-4 border-2 border-white hover:bg-orange-500 transition">📂 BITS.EXE</button>
+    <a href="https://t.me/Dervisshh" target="_blank" class="btn-desktop absolute top-[60%] left-[70%] p-4 border-2 border-white hover:bg-blue-500 transition">📂 TG_ACC.EXE</a>
+    <a href="https://github.com/sloypochina" target="_blank" class="btn-desktop absolute top-[20%] left-[80%] p-4 border-2 border-white hover:bg-green-500 transition">📂 GITHUB.EXE</a>
+    <!-- Кнопка товарища -->
+    <a href="http://nexus.lord-mikrotik.online/" target="_blank" class="btn-desktop absolute top-[50%] left-[40%] p-4 border-2 border-white hover:bg-purple-500 transition">📂 SITE_TOVARISHA.EXE</a>
+
+    <!-- Предупреждение -->
+    <div id="alert-win" class="win hidden w-64 p-4 top-40 left-40">
+        <p class="mb-4 text-sm">У меня хобби кароче, биты писать иногда, на те прикольнись, послушай)</p>
+        <button onclick="openPlayer()" class="bg-blue-600 px-4 py-2 text-white border border-white">ОК, СЛУХАНУ КА</button>
+    </div>
+
+    <!-- Плеер -->
+    <div id="player-win" class="win hidden w-80">
+        <div class="win-header">
+            <span>MUSIC_PLAYER.EXE</span>
+            <button onclick="$('#player-win').hide()">X</button>
+        </div>
+        <div class="p-4 space-y-2">
+            <audio id="audio" controls class="w-full"></audio>
+            <button onclick="play('audio/9bitCZH.m4a')" class="w-full border p-1 text-xs hover:bg-blue-900">1. Space gun wtf</button>
+            <button onclick="play('audio/30bitseeyou.m4a')" class="w-full border p-1 text-xs hover:bg-blue-900">2. cool sample = cool thing </button>
+            <button onclick="play('audio/31bitE.m4a')" class="w-full border p-1 text-xs hover:bg-blue-900">3. Energy hard thing </button>
+            <button onclick="play('audio/27bitZacepin.m4a')" class="w-full border p-1 text-xs hover:bg-blue-900">4. Chill Space Zacepin </button>
+            <button onclick="play('audio/26bitEa.m4a')" class="w-full border p-1 text-xs hover:bg-blue-900">5. Fast Funny Funk </button>
+            <button onclick="play('audio/23bitlithekanye.m4a')" class="w-full border p-1 text-xs hover:bg-blue-900">6. Pablo Kanye style </button>
+            <button onclick="play('tonoisetosilence.m4a')" class="w-full border p-1 text-xs hover:bg-blue-900">7. Carti pop out type </button>
+        </div>
+    </div>
+
+    <script>
+        $(".win").draggable({ handle: ".win-header" });
+        
+        function openPlayer() { 
+            $('#alert-win').hide(); 
+            $('#player-win').show(); 
+        }
+
+        function play(src) { 
+            const a = document.getElementById('audio'); 
+            a.src = src; 
+            a.play(); 
+        }
+        
+        const stars = document.getElementById('stars');
+        for(let i=0; i<60; i++) {
+            const s = document.createElement('div');
+            s.className = 'absolute text-red-500 font-bold';
+            s.style.left = Math.random()*100 + '%'; 
+            s.style.top = Math.random()*100 + '%';
+            s.innerHTML = '✦'; 
+            stars.appendChild(s);
+        }
+    </script>
+</body>
+</html>
