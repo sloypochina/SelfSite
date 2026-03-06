@@ -3,8 +3,8 @@
 ![Tailwind](https://img.shields.io/badge/Tailwind-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 # My SelfSite
-Site - Business card, it just show what i am can in html + javaScript + CSS + design
-# Персональный интерактивный веб-интерфейс #
+Site - Business card, it just show what i'm can [ html + javaScript + CSS + design + python + bots + fl studio ]
+# Персональный Интерактивный Веб-Интерфейс #
 
 ## 🛠 - внутряк аля стек 
 * **Frontend:** HTML5, Tailwind CSS
@@ -41,6 +41,6 @@ Site - Business card, it just show what i am can in html + javaScript + CSS + de
 * **Палитра:** Blue (#3b82f6) / Orange (#ff4500) / Black (#050505).
 * **Шрифты:** Space Grotesk, Playfair Display.
 ---
-*Created by Dervisshh // Sloypochina* 🔵☢️ 
+*CREAted By Dervisshh // Sloypochina* 🔵☢️ 
 ---
 https://t.me/Dervisshh :)🔸💠
