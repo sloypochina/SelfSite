@@ -10,12 +10,16 @@
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&family=Playfair+Display:ital,wght@1,900&display=swap');
 
         body { 
-            background: #050505; color: white; overflow: hidden; 
+            background: #050505; 
+            color: white; 
+            overflow: hidden; 
             font-family: 'Space Grotesk', monospace; 
             cursor: url('img/my-cursor.png'), auto; 
-            margin: 0; min-height: 100vh;
+            margin: 0; 
+            min-height: 100vh;
         }
 
+        /* Видео-фон */
         .video-bg {
             position: fixed; inset: 0; z-index: -3;
             width: 100vw; height: 100vh;
@@ -24,13 +28,21 @@
             transition: filter 1s ease;
         }
 
+        /* Градиентная виньетка: Синий -> Белый -> Оранжевый */
         body::after {
             content: ""; position: fixed; inset: 0;
-            background: linear-gradient(45deg, rgba(59, 130, 246, 0.2) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 69, 0, 0.2) 100%);
+            background: linear-gradient(
+                45deg, 
+                rgba(59, 130, 246, 0.2) 0%, 
+                rgba(255, 255, 255, 0.05) 50%, 
+                rgba(255, 69, 0, 0.2) 100%
+            );
             box-shadow: inset 0 0 150px 50px rgba(255, 255, 255, 0.1);
-            pointer-events: none; z-index: -1;
+            pointer-events: none; 
+            z-index: -1;
         }
 
+        /* Стиль для кнопок-папок */
         .glass-btn {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(5px);
@@ -39,7 +51,7 @@
         }
         
         /* Эффект пролагивания при наведении */
-        .glitch-btn:hover { animation: glitch-hover 0.2s infinite; box-shadow: 0 0 15px #ff4500; }
+        .glitch-btn:hover { animation: glitch-hover 0.2s infinite; box-shadow: 0 0 15px #3b82f6, 0 0 15px #ff4500; }
         @keyframes glitch-hover { 0%, 100% { transform: translate(0); } 33% { transform: translate(-3px, 2px); } 66% { transform: translate(3px, -2px); } }
 
         .win { position: absolute; background: rgba(0,0,0,0.9); border: 2px solid #3b82f6; box-shadow: 6px 6px 0 #ff4500; z-index: 10; }
@@ -48,13 +60,18 @@
         .glitch { animation: glitch 2s infinite; }
         @keyframes glitch { 0%, 100% { opacity: 1; } 50% { opacity: 0.8; transform: skew(-5deg); } }
 
-        @media (max-width: 768px) { .btn-desktop { position: static !important; margin: 20px auto; display: block !important; width: 80%; } }
+        @media (max-width: 768px) {
+            .btn-desktop { position: static !important; margin: 20px auto; display: block !important; width: 80%; }
+        }
+
+        /* Исправляем шлейф искр */
+        .trail-star { position: absolute; pointer-events: none; z-index: 9999; color: #3b82f6; font-weight: bold; }
     </style>
 </head>
 <body>
 
     <video autoplay muted loop playsinline class="video-bg" id="bg-video">
-        <source src="img/bg.mp4" type="video/mp4">
+        <source src="bg.mp4" type="video/mp4">
     </video>
     
     <div id="stars" class="fixed inset-0 z-[-1] opacity-50"></div>
@@ -69,9 +86,9 @@
     </header>
 
     <button onclick="createTrail(event); $('#alert-win').show()" class="btn-desktop absolute top-[30%] left-[25%] p-4 border-2 border-white hover:bg-orange-500 transition glass-btn glitch-btn">📂 BITS.EXE</button>
-    <a href="https://t.me/Dervisshh" target="_blank" class="btn-desktop absolute top-[60%] left-[70%] p-4 border-2 border-white hover:bg-blue-500 transition glass-btn glitch-btn">📂 TG_ACC.EXE</a>
-    <a href="https://github.com/sloypochina" target="_blank" class="btn-desktop absolute top-[20%] left-[80%] p-4 border-2 border-white hover:bg-green-500 transition glass-btn glitch-btn">📂 GITHUB.EXE</a>
-    <a href="http://nexus.lord-mikrotik.online/" target="_blank" class="btn-desktop absolute top-[50%] left-[40%] p-4 border-2 border-white hover:bg-purple-500 transition glass-btn glitch-btn">📂 SITE_TOVARISHA.EXE</a>
+    <a href="https://t.me/Dervisshh" target="_blank" onclick="createTrail(event)" class="btn-desktop absolute top-[60%] left-[70%] p-4 border-2 border-white hover:bg-blue-500 transition glass-btn glitch-btn">📂 TG_ACC.EXE</a>
+    <a href="https://github.com/sloypochina" target="_blank" onclick="createTrail(event)" class="btn-desktop absolute top-[20%] left-[80%] p-4 border-2 border-white hover:bg-green-500 transition glass-btn glitch-btn">📂 GITHUB.EXE</a>
+    <a href="http://nexus.lord-mikrotik.online/" target="_blank" onclick="createTrail(event)" class="btn-desktop absolute top-[50%] left-[40%] p-4 border-2 border-white hover:bg-purple-500 transition glass-btn glitch-btn">📂 SITE_TOVARISHA.EXE</a>
 
     <div id="alert-win" class="win hidden w-64 p-4 top-40 left-40">
         <p class="mb-4 text-sm">У меня хобби кароче, биты писать иногда, на те прикольнись, послушай)</p>
@@ -86,7 +103,7 @@
         <div class="p-4 space-y-2">
             <audio id="audio" controls class="w-full"></audio>
             <button onclick="play('audio/9bitCZH.m4a')" class="w-full border p-1 text-xs hover:bg-blue-900">1. Space gun wtf</button>
-            <button onclick="play('audio/30bitseeyou.m4a')" class="w-full border p-1 text-xs hover:bg-blue-900">2. cool sample thing </button>
+            <button onclick="play('audio/30bitseeyou.m4a')" class="w-full border p-1 text-xs hover:bg-blue-900">2. cool sample = cool thing </button>
             <button onclick="play('audio/31bitE.m4a')" class="w-full border p-1 text-xs hover:bg-blue-900">3. Energy hard thing </button>
             <button onclick="play('audio/27bitZacepin.m4a')" class="w-full border p-1 text-xs hover:bg-blue-900">4. Chill Space Zacepin </button>
             <button onclick="play('audio/26bitEa.m4a')" class="w-full border p-1 text-xs hover:bg-blue-900">5. Fast Funny Funk </button>
@@ -99,21 +116,21 @@
         $(".win").draggable({ handle: ".win-header" });
         
         function openPlayer() { $('#alert-win').hide(); $('#player-win').show(); }
+        
         function play(src) { 
             const a = document.getElementById('audio'); 
             a.src = src; a.play();
             $('#bg-video').css('filter', 'blur(5px) grayscale(100%) brightness(1.2)');
         }
         
-        // Trail Effect
         function createTrail(e) {
             const el = document.createElement('div');
-            el.className = 'absolute pointer-events-none text-orange-500 font-bold';
+            el.className = 'trail-star';
             el.innerHTML = '✦';
             el.style.left = e.pageX + 'px';
             el.style.top = e.pageY + 'px';
             document.body.appendChild(el);
-            $(el).animate({ opacity: 0, top: '+=50px' }, 1000, () => el.remove());
+            $(el).animate({ opacity: 0, top: '+=100px', fontSize: '30px' }, 1000, () => el.remove());
         }
 
         const stars = document.getElementById('stars');
