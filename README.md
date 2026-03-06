@@ -1,13 +1,4 @@
-# ✦ Dervisshh // Sloypochina OS ✦
-
-<div align="center">
-  <h3>
-    <span style="color:#3b82f6"> 🌀 DIGITAL /// </span>
-    <span style="color:#ff4500"> ☄️ ANALOG </span>
-  </h3>
-</div>
-
----
+# ✦🔸✦🔵✦
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![Tailwind](https://img.shields.io/badge/Tailwind-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
@@ -15,7 +6,7 @@
 Site - Business card, it just show what i am can in html + javaScript + CSS + design
 # Персональный интерактивный веб-интерфейс #
 
-## 🛠 - внутряк аля стек 🔵🔸
+## 🛠 - внутряк аля стек 
 * **Frontend:** HTML5, Tailwind CSS
 * **Интерактивность:** jQuery, jQuery UI (Draggable Windows)
 * **Анимации:** кастомный скрипты для генерации частиц (звездного фона)
